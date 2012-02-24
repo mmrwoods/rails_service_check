@@ -1,0 +1,36 @@
+= rails_service_check
+
+When hitting the homepage with pingdom won't do, but you're too lazy to
+organise some proper monitoring.
+
+This is just a quick hacky solution to a problem I needed to solve - use
+something as dumb as a remote http request verify that the main services
+required for my application to function are working. It's a very long way
+off being anything near an ideal solution, but it does the job.
+
+== Usage
+
+Create an initializer and add checks by calling RailsServiceCheck.add
+
+    # Add a predefined check (a class defined in RailsServiceCheck::Checks namespace that responds to :run)
+    RailsServiceCheck.add :smtp
+
+    # Add a pre-defined check, but pass some options to the initialize method
+    RailsServiceCheck.add :solr_connection, :timeout => 5
+
+    # Add a new check by passing a block
+    RailsServiceCheck.add do
+      'foo'
+    end
+
+Send a http get request to run all checks
+
+    wget http://mysite/service_check
+
+== Notes
+
+This is some experimental shit, it'll probably break.
+
+== License
+
+The don't sue me if it breaks license.

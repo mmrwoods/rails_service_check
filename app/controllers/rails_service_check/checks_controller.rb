@@ -1,8 +1,8 @@
 module RailsServiceCheck
   class ChecksController < ActionController::Base
     def all
-      RailsServiceCheck::Checks.methods(false).each do |method|
-        RailsServiceCheck::Checks.send(method)
+      RailsServiceCheck.checks.each do |label, check|
+        check.run
       end
       render :text => "ok"
     rescue Exception => e
