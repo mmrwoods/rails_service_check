@@ -12,20 +12,21 @@ off being anything near an ideal solution, but it does the job.
 
 Create an initializer and add checks by calling RailsServiceCheck.add
 
-    # Add a predefined check (a class defined in RailsServiceCheck::Checks namespace that responds to :run)
+    # Add a predefined check (pre-defined checks are classes within the
+    # RailsServiceCheck::Checks namespace that have a #run method)
     RailsServiceCheck.add :smtp
 
     # Add a pre-defined check, but pass some options to the initialize method
     RailsServiceCheck.add :solr_connection, :timeout => 5
 
     # Add a new check by passing a block
-    RailsServiceCheck.add do
+    RailsServiceCheck.add do :foo
       'foo'
     end
 
 Send a http get request to run all checks
 
-    wget http://mysite/service_check
+    curl -i http://mysite/service_check
 
 == Notes
 
