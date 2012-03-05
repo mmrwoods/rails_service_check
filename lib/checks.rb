@@ -34,11 +34,10 @@ module RailsServiceCheck
       end
     end
 
-    class DatabaseConnection
+    class ActiveRecordConnection
       def run
         # do nothing for the moment, connection checks for active record
         # already take place within the connection pool rack middleware.
-        # This is shit though, assumes we're using AR for a start.
       end
     end
 
