@@ -20,7 +20,7 @@ Create an initializer and add checks by calling RailsServiceCheck.add
     RailsServiceCheck.add :solr_connection, :timeout => 5
 
     # Add a new check by passing a block
-    RailsServiceCheck.add do :foo
+    RailsServiceCheck.add :foo do
       'foo'
     end
 
