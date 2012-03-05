@@ -2,11 +2,13 @@ module RailsServiceCheck
   class ChecksController < ActionController::Base
     def all
       RailsServiceCheck.checks.each do |label, check|
-        check.run
+        begin
+          check.run
+        rescue
+          render :text => "#{label.to_s.humanize}: #{$!.message}", :status => 500 and return
+        end
       end
       render :text => "ok"
-    rescue Exception => e
-      render :text => "#{e.message}", :status => 500 and return
     end
   end
 end
