@@ -24,9 +24,13 @@ Create an initializer and add checks by calling RailsServiceCheck.add
       'foo'
     end
 
-Send a http get request to run all checks
+Run all checks
 
     curl -i http://mysite/service_check
+
+Run a specific check
+
+    curl -i http://mysite/service_check/foo
 
 == Notes
 
