@@ -9,7 +9,7 @@ module RailsServiceCheck
           block.call
         end
       else
-        raise "Unknown check #{label}" unless RailsServiceCheck::Checks.constants.include?(label.to_s.camelize)
+        raise "Unknown check #{label}" unless RailsServiceCheck::Checks.constants.map(&:to_s).include?(label.to_s.camelize)
         klass = RailsServiceCheck::Checks.const_get(label.to_s.camelize)
         raise NoMethodError, "run method not declared in #{label.inspect} check" unless klass.method_defined?(:run)
       end
